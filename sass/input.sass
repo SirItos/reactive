@@ -21,9 +21,14 @@
         left: 8px
         z-index: 100
         pointer-events: none
+        max-width: calc(100% - 8px)
+        overflow: hidden
+
         &__text
-            white-space: nowrap
+            overflow: hidden
             text-overflow: ellipsis
+            white-space: nowrap
+
     &_hint
         width: 100%
         text-align: center
@@ -70,13 +75,14 @@
             transform: scale(0)
         &:focus ~ &__focus
             transform: scale(1)
+        &:focus ~ .input-group_label
+            color: $primary
         &:focus ~ .input-group_label,
         &__not_empty ~ .input-group_label
             top: 0px
             left: 0
             font-size: 10px
             font-weight: bold
-            color: $primary
 
 input[type="date"]:not(:focus):in-range::-webkit-datetime-edit-year-field,
 input[type="date"]:not(:focus):in-range::-webkit-datetime-edit-month-field,

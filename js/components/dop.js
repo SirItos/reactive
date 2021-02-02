@@ -1,4 +1,5 @@
 import { hellper } from './index'
+import { state } from '../state'
 
 export default function component() {
   const { getInputTemplate } = hellper()
@@ -9,11 +10,9 @@ export default function component() {
         {
           label: 'name',
           value: 'who_recomend'
-        },
-
-        { label: 'required', value: 'required' }
+        }
       ],
-      null,
+      state.recomend,
       'mt-2'
     ),
     getInputTemplate(
@@ -22,11 +21,9 @@ export default function component() {
         {
           label: 'name',
           value: 'add'
-        },
-
-        { label: 'required', value: 'required' }
+        }
       ],
-      null,
+      state.credit,
       'mt-2',
       true
     ),
@@ -37,10 +34,9 @@ export default function component() {
         {
           label: 'name',
           value: 'when'
-        },
-        { label: 'required', value: 'required' }
+        }
       ],
-      null,
+      state.timeToStart,
       null
     )
   ]

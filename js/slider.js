@@ -1,7 +1,7 @@
 import 'slick-carousel'
 import $ from 'jquery'
 import { runner, observable } from './observ'
-import { validationGroups } from './stepValidator'
+import { validateStep } from './stepValidator'
 import { sendRequest, validateCheckbox } from './api'
 const data = observable({
   slider: null,
@@ -16,8 +16,6 @@ const headers = [
   'Состав семьи',
   'Дополнительные вопросы'
 ]
-
-const stepNumToName = ['personal', 'education', 'work', 'army', 'family', 'dop']
 
 export const initSlider = (target = '#slider') => {
   data.slider = $(target).slick({
@@ -39,9 +37,9 @@ export const resizeSlick = () => {
 
 const setMethods = () => {
   $('.next-btn').click((event) => {
-    // if (validateStep()) {
-    changeSlide(event)
-    // }
+    if (validateStep(data.currentSlide)) {
+      changeSlide(event)
+    }
   })
   $('.prev-btn').click((event) => {
     changeSlide(event, 'slickPrev')
@@ -50,6 +48,7 @@ const setMethods = () => {
 
 export const changeSlide = (event, direction = 'slickNext') => {
   if (!data.slider) return
+
   if (data.currentSlide === headers.length - 1 && direction === 'slickNext') {
     sendRequest()
     return

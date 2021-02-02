@@ -21,15 +21,14 @@ export default function component(index = 0) {
             getInputTemplate(
               null,
               [
-                ({
+                {
                   label: 'name',
                   value: 'program_0'
                 },
                 {
                   label: 'data-id',
                   value: 'prog_0'
-                },
-                { label: 'required', value: 'required' })
+                }
               ],
               state.programm[index].name,
               null

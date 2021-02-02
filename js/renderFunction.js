@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import mask from 'jquery-mask-plugin'
 import { runner } from './observ'
 import { setValidation } from './stepValidator'
 
@@ -19,6 +20,11 @@ export const render = (obj, parent, step = 'personal') => {
 
   if (elementInfo.attrs) {
     elementInfo.attrs.forEach((attr) => {
+      if (attr.label === 'mask') {
+        $(newNode).mask(attr.value)
+
+        return
+      }
       newNode.setAttribute(attr.label, attr.value)
     })
   }
@@ -80,17 +86,27 @@ export const render = (obj, parent, step = 'personal') => {
   }
 }
 
-const validate = (state, target, rules) => {
+const validate = (state, target, rules, mode = false) => {
   let status = true
   for (let key in rules) {
     const result = rules[key](state.value)
-
+    if ($(target).css('display') === 'none') {
+      break
+    }
     if (!result) {
       $(target)
         .find('.input-group_validation-block')
         .addClass('input-group_validation-block__active')
+      if (mode) {
+        $('html, body').animate(
+          { scrollTop: $(target).offset().top - 50 },
+          'fast'
+        )
+        target.focus()
+      }
 
       status = false
+
       break
     }
 

@@ -23,9 +23,10 @@ $(document).ready(() => {
     const root = document.querySelector(`#questionnaire .${key}-container`)
 
     comps[key].template.forEach((element) => {
-      render(element, root)
+      render(element, root, key)
     })
   })
+
   addBtnArray.forEach((item) => {
     const root = document.querySelector(
       `#questionnaire .add_${item.target}-container`

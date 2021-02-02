@@ -12,7 +12,9 @@ module.exports = {
     '**/package-lock.json',
     '**/package.json',
     '**/escription.txt',
-    '**/snowpack.config.js'
+    '**/snowpack.config.js',
+    '**/js/t.js',
+    '**/php'
   ],
   plugins: ['@snowpack/plugin-sass'],
   packageOptions: {
@@ -23,10 +25,11 @@ module.exports = {
   },
   buildOptions: {
     /* ... */
-  },
-  optimize: {
-    bundle: true,
-    minify: true,
-    target: 'es2018'
   }
+  // optimize: {
+  //   // bundle: true,
+  //   treeshake: true,
+  //   minify: true,
+  //   target: 'es2018'
+  // }
 }

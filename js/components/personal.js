@@ -103,6 +103,10 @@ export default function component() {
                       label: 'name',
                       value: 'passport_serias'
                     },
+                    {
+                      label: 'mask',
+                      value: '0000'
+                    },
                     { label: 'required', value: 'required' }
                   ],
                   state.passport_seria,
@@ -122,6 +126,10 @@ export default function component() {
                     {
                       label: 'name',
                       value: 'passport_number'
+                    },
+                    {
+                      label: 'mask',
+                      value: '000000'
                     },
                     { label: 'required', value: 'required' }
                   ],

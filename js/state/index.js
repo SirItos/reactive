@@ -9,13 +9,14 @@ import {
 import { thirdStep, workState } from './thirdStep'
 import { fourStep } from './fourStep'
 import { fiveStep, familyState } from './fiveStep'
+import { sixStep } from './sixStep'
 
 const dict = {
   educationState: JSON.parse(JSON.stringify(educationState)),
   langState: JSON.parse(JSON.stringify(langState)),
   programmState: JSON.parse(JSON.stringify(programmState)),
   workState: JSON.parse(JSON.stringify(workState)),
-  workState: JSON.parse(JSON.stringify(familyState))
+  familyState: JSON.parse(JSON.stringify(familyState))
 }
 
 /**
@@ -36,5 +37,6 @@ export const state = observable({
   ...secondStep,
   ...thirdStep,
   ...fourStep,
-  ...fiveStep
+  ...fiveStep,
+  ...sixStep
 })

@@ -77,6 +77,14 @@ export default function component() {
                   label: 'name',
                   value: 'relation'
                 },
+                {
+                  label: 'type',
+                  value: 'tel'
+                },
+                {
+                  label: 'mask',
+                  value: '+7 (000) 000 00-00'
+                },
                 { label: 'type', value: 'tes' },
                 { label: 'required', value: 'required' }
               ],
@@ -115,6 +123,14 @@ export default function component() {
                 {
                   label: 'name',
                   value: 'relation'
+                },
+                {
+                  label: 'type',
+                  value: 'tel'
+                },
+                {
+                  label: 'mask',
+                  value: '+7 (000) 000 00-00'
                 },
                 { label: 'type', value: 'tes' },
                 { label: 'required', value: 'required' }

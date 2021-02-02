@@ -11,7 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "jquery": "^3.5.1",
+    "jquery-mask-plugin": "^1.14.16",
     "slick-carousel": "^1.8.1",
     "snowpack": "^3.0.11"
   },

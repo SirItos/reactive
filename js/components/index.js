@@ -40,7 +40,7 @@ export const hellper = () => {
             {
               element: {
                 tag: 'div',
-                classes: 'input-group_label',
+                classes: 'input-group_label__text',
                 inner: null
               }
             }
@@ -70,7 +70,7 @@ export const hellper = () => {
       ]
     }
 
-    inputTemplateCopy.children[1].element.inner = label
+    inputTemplateCopy.children[1].children[0].element.inner = label
     inputTemplateCopy.children[0].element.attrs = attrs
     inputTemplateCopy.children[0].element.state = state
     inputTemplateCopy.children[0].element.rules = [
