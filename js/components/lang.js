@@ -6,10 +6,9 @@ import { state } from '../state'
 
 export default function component(index = 0) {
   const { getInputTemplate } = hellper()
-
+  state.lang[index].lvl.value = 1
   const changeSelect = (event) => {
-    state.lang[index].lvl = event.target.value
-    console.log(state)
+    state.lang[index].lvl.value = event.target.value
   }
 
   const template = [

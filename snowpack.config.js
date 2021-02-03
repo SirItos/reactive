@@ -1,11 +1,21 @@
 // Snowpack Configuration File
 // See all supported options: https://www.snowpack.dev/reference/configuration
+const httpProxy = require('http-proxy')
+const proxy = httpProxy.createServer({
+  target: 'http://php'
+})
 
 /** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
   mount: {
     /* ... */
   },
+  routes: [
+    {
+      src: '/api',
+      dest: (req, res) => proxy.web(req, res)
+    }
+  ],
   exclude: [
     '**/node_modules/**/*',
     '**/.prettierrc',

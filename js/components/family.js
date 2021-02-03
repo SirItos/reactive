@@ -1,6 +1,7 @@
 import { hellper } from './index'
+import { state } from '../state'
 
-export default function component() {
+export default function component(index = 0) {
   const { getInputTemplate } = hellper()
   const template = [
     {
@@ -25,7 +26,7 @@ export default function component() {
 
                 { label: 'required', value: 'required' }
               ],
-              null,
+              state.family[index].relation,
               'mt-2'
             ),
             getInputTemplate(
@@ -38,7 +39,7 @@ export default function component() {
 
                 { label: 'required', value: 'required' }
               ],
-              null,
+              state.family[index].fio,
               'mt-2 '
             ),
             getInputTemplate(
@@ -54,7 +55,20 @@ export default function component() {
                 },
                 { label: 'required', value: 'required' }
               ],
-              null,
+              state.family[index].birthDate,
+              'mt-2'
+            ),
+            getInputTemplate(
+              'Место рождения',
+              [
+                {
+                  label: 'name',
+                  value: 'relation'
+                },
+
+                { label: 'required', value: 'required' }
+              ],
+              state.family[index].birthPlace,
               'mt-2'
             ),
             getInputTemplate(
@@ -67,7 +81,7 @@ export default function component() {
 
                 { label: 'required', value: 'required' }
               ],
-              null,
+              state.family[index].regAdress,
               'mt-2'
             ),
             getInputTemplate(
@@ -88,7 +102,7 @@ export default function component() {
                 { label: 'type', value: 'tes' },
                 { label: 'required', value: 'required' }
               ],
-              null,
+              state.family[index].phone,
               'mt-2'
             ),
             getInputTemplate(
@@ -101,7 +115,7 @@ export default function component() {
 
                 { label: 'required', value: 'required' }
               ],
-              null,
+              state.family[index].workPlace,
               'mt-2'
             ),
             getInputTemplate(
@@ -114,7 +128,7 @@ export default function component() {
 
                 { label: 'required', value: 'required' }
               ],
-              null,
+              state.family[index].position,
               'mt-2'
             ),
             getInputTemplate(
@@ -135,7 +149,7 @@ export default function component() {
                 { label: 'type', value: 'tes' },
                 { label: 'required', value: 'required' }
               ],
-              null,
+              state.family[index].workPhone,
               'mt-2'
             )
           ]

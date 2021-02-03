@@ -2,26 +2,29 @@ export const familyState = {
   relation: {
     value: null
   },
-  fioFamily: {
+  fio: {
     value: null
   },
-  birthDateFamily: {
+  birthDate: {
     value: null
   },
-  familyRegAdress: {
+  birthPlace: {
     value: null
   },
-  familyPhone: {
+  regAdress: {
+    value: null
+  },
+  phone: {
     value: null
   },
   workPlace: {
     value: null
   },
-  familyPosition: {
+  position: {
     value: null
   },
-  familyWorkPhone: {
-    valye: null
+  workPhone: {
+    value: null
   }
 }
 

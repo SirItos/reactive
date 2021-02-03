@@ -1,10 +1,10 @@
 import { state } from '../state'
 
 export default function component() {
-  state.pc_skil.value = 'программист'
+  state.pc_skill.value = 'программист'
 
   const change = (event) => {
-    state.pc_skil.value = event.target.value
+    state.pc_skill.value = event.target.value
   }
 
   const template = [
@@ -19,7 +19,7 @@ export default function component() {
             tag: 'select',
             classes: 'input-group_select',
             attrs: [],
-            state: state.pc_skil,
+            state: state.pc_skill,
             changeAction: change
           },
           children: [

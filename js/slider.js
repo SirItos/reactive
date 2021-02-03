@@ -37,9 +37,11 @@ export const resizeSlick = () => {
 
 const setMethods = () => {
   $('.next-btn').click((event) => {
+    // sendRequest()
     if (validateStep(data.currentSlide)) {
-      changeSlide(event)
+      changeSlide(event, 'slickNext')
     }
+    return
   })
   $('.prev-btn').click((event) => {
     changeSlide(event, 'slickPrev')

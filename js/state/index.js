@@ -27,8 +27,7 @@ const dict = {
  * @param {sting} target
  */
 export const addToArray = (target) => {
-  console.log(state[target])
-  state[target].push(dict[`${target}State`])
+  state[target].push(observable(dict[`${target}State`]))
   return state[target].length - 1
 }
 

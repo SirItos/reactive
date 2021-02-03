@@ -31,5 +31,14 @@ export const firstStep = {
   },
   address_registrate: {
     value: null
+  },
+  inn: {
+    value: null
+  },
+  family_state: {
+    value: null
+  },
+  adresEq: {
+    value: null
   }
 }

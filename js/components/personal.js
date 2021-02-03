@@ -1,9 +1,31 @@
-import { observable } from '../observ'
+import { runner } from '../observ'
 import { hellper } from './index'
 import { state } from '../state'
+import $ from 'jquery'
 
 export default function component() {
-  const { getInputTemplate } = hellper()
+  const { getInputTemplate, checkboxComponent } = hellper()
+
+  state.family_state.value = 'Не женат/Не замужем'
+  const change = (event) => {
+    state.family_state.value = event.target.value
+  }
+
+  runner(() => {
+    const s = state.adresEq.value
+    const area = $('textarea[name="registration_address"]')
+
+    if (
+      $('input[name="check_22"') &&
+      $('input[name="check_22"').is(':checked')
+    ) {
+      state.address_registrate.value = state.addrest_fact.value
+      area.val(state.address_registrate.value)
+    } else {
+      state.address_registrate.value = null
+      area.val('')
+    }
+  })
 
   const template = [
     getInputTemplate(
@@ -195,6 +217,61 @@ export default function component() {
         }
       ]
     },
+    {
+      element: {
+        tag: 'div',
+        classes: 'input-group col-12 col-sm-10 col-md-8 mt-2'
+      },
+      children: [
+        {
+          element: {
+            tag: 'select',
+            classes: 'input-group_select',
+            attrs: [],
+            state: state.family_state,
+            changeAction: change
+          },
+          children: [
+            {
+              element: {
+                tag: 'option',
+                inner: 'Не женат/Не замужем',
+                attrs: [
+                  {
+                    label: 'value',
+                    value: 'Не женат/Не замужем'
+                  }
+                ]
+              }
+            },
+            {
+              element: {
+                tag: 'option',
+                inner: 'Женат/Замужем',
+                attrs: [
+                  {
+                    label: 'value',
+                    value: 'Женат/Замужем'
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    getInputTemplate(
+      'ИНН',
+      [
+        {
+          label: 'name',
+          value: 'inn'
+        },
+        { label: 'required', value: 'required' }
+      ],
+      state.inn,
+      'mt-2'
+    ),
     getInputTemplate(
       'Адрес фактического проживания ',
       [
@@ -205,7 +282,8 @@ export default function component() {
         { label: 'required', value: 'required' }
       ],
       state.addrest_fact,
-      'mt-2'
+      'mt-2',
+      true
     ),
     {
       element: {
@@ -213,6 +291,19 @@ export default function component() {
         inner: '(индекс, подробный адрес, телефон)',
         classes: 'input-group_hint'
       }
+    },
+    {
+      element: {
+        tag: 'div',
+        classes: 'col-12 col-sm-10 col-md-8 mt-4 mb-4'
+      },
+      children: [
+        checkboxComponent(
+          'Адрес фактического проживания совпадает с пропиской',
+          22,
+          state.adresEq
+        )
+      ]
     },
     getInputTemplate(
       'Адрес прописки',
@@ -224,7 +315,8 @@ export default function component() {
         { label: 'required', value: 'required' }
       ],
       state.address_registrate,
-      'mt-2'
+      'mt-2',
+      true
     ),
     {
       element: {

@@ -34,7 +34,7 @@ export const programmState = {
 export const secondStep = {
   education: [educationState],
   lang: [langState],
-  pc_skil: {
+  pc_skill: {
     value: null
   },
   programm: [programmState]
