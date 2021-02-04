@@ -4,6 +4,7 @@ import $ from 'jquery'
 import './jobManager.js'
 import './renderFunction.js'
 import addBtn from './components/addBtn'
+
 import { componetns } from './components'
 import { render } from './renderFunction.js'
 import { initSlider } from './slider'

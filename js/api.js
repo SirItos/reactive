@@ -1,12 +1,32 @@
 import $ from 'jquery'
 import { state } from './state'
 import axios from 'axios'
+import { dialgoFunc } from './dialog'
+
+const { dialogState } = dialgoFunc()
+
+const url = `https://sksbank.ru/local/components/sks/hr.questionnaire/templates/default/sender/`
 
 export const sendRequest = async () => {
+  dialogState.show.value = true
+  dialogState.loading.value = true
   const payload = createPayload(JSON.parse(JSON.stringify(state)))
-  await axios.post('/php/', payload).then((response) => {
-    console.log(response)
-  })
+  await axios
+    .post(url, payload)
+    .then((response) => {
+      console.log(response)
+      $('.dialog_body').html(
+        '<div>Ваша анкета отправлена.</div><div>Благодарим за обращение!</div>'
+      )
+      dialogState.loading.value = false
+    })
+    .catch((e) => {
+      console.log(e)
+      $('.dialog_body').html(
+        '<div>Что-то пошло не так.</div><div>Попробуйте повторить попытку позднее.</div>'
+      )
+      dialogState.loading.value = false
+    })
 }
 
 let enabled = false
