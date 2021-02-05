@@ -4,12 +4,7 @@ import { state } from '../state'
 import $ from 'jquery'
 
 export default function component() {
-  const { getInputTemplate, checkboxComponent } = hellper()
-
-  state.family_state.value = 'Не женат/Не замужем'
-  const change = (event) => {
-    state.family_state.value = event.target.value
-  }
+  const { getInputTemplate, checkboxComponent, getSelectTemplate } = hellper()
 
   runner(() => {
     const s = state.adresEq.value
@@ -71,6 +66,7 @@ export default function component() {
           label: 'type',
           value: 'date'
         },
+
         { label: 'required', value: 'required' }
       ],
       state.birthDate,
@@ -132,7 +128,17 @@ export default function component() {
                     { label: 'required', value: 'required' }
                   ],
                   state.passport_seria,
-                  null
+                  null,
+                  false,
+                  [
+                    (val) => {
+                      if (!val) return true
+                      return (
+                        val.length === 4 ||
+                        'Серия паспорта должна содержать 4 символа'
+                      )
+                    }
+                  ]
                 )
               ]
             },
@@ -156,7 +162,17 @@ export default function component() {
                     { label: 'required', value: 'required' }
                   ],
                   state.passport_number,
-                  null
+                  null,
+                  false,
+                  [
+                    (val) => {
+                      if (!val) return true
+                      return (
+                        val.length === 6 ||
+                        'Номер паспорта должен содержать 6 символов'
+                      )
+                    }
+                  ]
                 )
               ]
             }
@@ -217,49 +233,31 @@ export default function component() {
         }
       ]
     },
-    {
-      element: {
-        tag: 'div',
-        classes: 'input-group col-12 col-sm-10 col-md-8 mt-2'
-      },
-      children: [
+
+    getSelectTemplate({
+      state: state.family_state,
+      label: 'Семейное положение',
+      rules: [],
+      req: true,
+      options: [
         {
-          element: {
-            tag: 'select',
-            classes: 'input-group_select',
-            attrs: [],
-            state: state.family_state,
-            changeAction: change
-          },
-          children: [
-            {
-              element: {
-                tag: 'option',
-                inner: 'Не женат/Не замужем',
-                attrs: [
-                  {
-                    label: 'value',
-                    value: 'Не женат/Не замужем'
-                  }
-                ]
-              }
-            },
-            {
-              element: {
-                tag: 'option',
-                inner: 'Женат/Замужем',
-                attrs: [
-                  {
-                    label: 'value',
-                    value: 'Женат/Замужем'
-                  }
-                ]
-              }
-            }
-          ]
+          value: 'Женат/Замужем'
+        },
+        {
+          value: 'Холост/Не в браке'
+        },
+        {
+          value: 'В разводе'
+        },
+        {
+          value: 'Вдовец/Вдова'
+        },
+        {
+          value: 'Гражданский брак'
         }
       ]
-    },
+    }),
+
     getInputTemplate(
       'ИНН',
       [
@@ -267,10 +265,49 @@ export default function component() {
           label: 'name',
           value: 'inn'
         },
-        { label: 'required', value: 'required' }
+        {
+          label: 'mask',
+          value: '000000000000'
+        }
       ],
       state.inn,
-      'mt-2'
+      'mt-2',
+      false,
+      [
+        (val) => {
+          if (!val) return true
+          return val.length === 12 || 'ИНН должен содержать 12 символов'
+        }
+      ]
+    ),
+    getInputTemplate(
+      'Телефон',
+      [
+        {
+          label: 'name',
+          value: 'relation'
+        },
+        {
+          label: 'type',
+          value: 'tel'
+        },
+        {
+          label: 'mask',
+          value: '+7 (000) 000 00-00'
+        },
+        { label: 'type', value: 'tel' },
+        { label: 'required', value: 'required' }
+      ],
+      state.phone,
+      'mt-2',
+      false,
+      [
+        (val) => {
+          if (!val) return true
+
+          return val.length === 18 || 'Укажите полный номер телефона'
+        }
+      ]
     ),
     getInputTemplate(
       'Адрес фактического проживания ',
@@ -288,7 +325,7 @@ export default function component() {
     {
       element: {
         tag: 'div',
-        inner: '(индекс, подробный адрес, телефон)',
+        inner: '(индекс, подробный адрес)',
         classes: 'input-group_hint'
       }
     },
@@ -321,7 +358,7 @@ export default function component() {
     {
       element: {
         tag: 'div',
-        inner: '(индекс, подробный адрес, телефон)',
+        inner: '(индекс, подробный адрес)',
         classes: 'input-group_hint'
       }
     }

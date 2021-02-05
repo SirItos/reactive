@@ -2,7 +2,7 @@ import personal from './personal'
 import education from './education'
 import programm from './programm'
 import lang from './lang'
-import pc from './pc_skil'
+import pc from './pc_skill'
 import work from './work'
 import army from './army'
 import family from './family'
@@ -15,7 +15,8 @@ export const hellper = () => {
     attrs = [],
     state = null,
     addClass = null,
-    textarea = false
+    textarea = false,
+    rules = []
   ) => {
     const inputTemplateCopy = {
       element: {
@@ -76,8 +77,10 @@ export const hellper = () => {
     inputTemplateCopy.children[0].element.rules = [
       (val) => {
         return !!val
-      }
+      },
+      ...rules
     ]
+
     inputTemplateCopy.element.classes =
       inputTemplateCopy.element.classes + ' ' + addClass
     if (textarea) {
@@ -85,6 +88,113 @@ export const hellper = () => {
     }
 
     return inputTemplateCopy
+  }
+
+  const getSelectTemplate = ({
+    state,
+    label,
+    options,
+    change,
+    rules,
+    req,
+    container
+  }) => {
+    const template = {
+      element: {
+        tag: 'div',
+        classes: container || 'input-group col-12 col-sm-10 col-md-8 mt-2'
+      },
+      children: [
+        {
+          element: {
+            tag: 'select',
+            classes: 'input-group_select',
+            attrs: [
+              {
+                label: 'required',
+                value: req ? 'required' : ''
+              }
+            ],
+            rules: req
+              ? [
+                  (val) => {
+                    return !!val
+                  }
+                ]
+              : [],
+            state: state,
+            changeAction: change
+          },
+          children: [
+            {
+              element: {
+                tag: 'option',
+                inner: '',
+                attrs: [
+                  {
+                    label: 'value',
+                    value: null
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          element: {
+            tag: 'label',
+            classes: 'input-group_label'
+          },
+          children: [
+            {
+              element: {
+                tag: 'div',
+                classes: 'input-group_label__text',
+                inner: label || ''
+              }
+            }
+          ]
+        },
+        {
+          element: {
+            tag: 'div',
+            classes: 'input-group_validation-block'
+          },
+          children: [
+            {
+              element: {
+                tag: 'div',
+                classes: 'input-group_validation-block__text',
+                inner: 'Необходимо заполнить поле'
+              }
+            }
+          ]
+        }
+      ]
+    }
+
+    const getOption = (option) => {
+      const template = {
+        element: {
+          tag: 'option',
+          inner: option.inner || option.value,
+          attrs: [
+            {
+              label: 'value',
+              value: option.value
+            }
+          ]
+        }
+      }
+
+      return template
+    }
+
+    options.forEach((element) => {
+      template.children[0].children.push(getOption(element))
+    })
+
+    return template
   }
 
   const checkboxComponent = (innerText, id = 0, state = null) => {
@@ -143,6 +253,7 @@ export const hellper = () => {
   return {
     checkboxComponent,
     getInputTemplate,
+    getSelectTemplate,
     btnTemplate
   }
 }
@@ -152,7 +263,7 @@ export const componetns = () => {
     personal: personal(),
     education: education(),
     lang: lang(),
-    pc_skil: pc(),
+    pc_skill: pc(),
     programm: programm(),
     work: work(),
     army: army(),

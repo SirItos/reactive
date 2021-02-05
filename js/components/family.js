@@ -23,8 +23,10 @@ export default function component(index = 0) {
                   label: 'name',
                   value: 'relation'
                 },
-
-                { label: 'required', value: 'required' }
+                {
+                  label: 'required',
+                  value: 'required'
+                }
               ],
               state.family[index].relation,
               'mt-2'
@@ -35,9 +37,7 @@ export default function component(index = 0) {
                 {
                   label: 'name',
                   value: 'family_name'
-                },
-
-                { label: 'required', value: 'required' }
+                }
               ],
               state.family[index].fio,
               'mt-2 '
@@ -52,8 +52,7 @@ export default function component(index = 0) {
                 {
                   label: 'type',
                   value: 'date'
-                },
-                { label: 'required', value: 'required' }
+                }
               ],
               state.family[index].birthDate,
               'mt-2'
@@ -64,9 +63,7 @@ export default function component(index = 0) {
                 {
                   label: 'name',
                   value: 'relation'
-                },
-
-                { label: 'required', value: 'required' }
+                }
               ],
               state.family[index].birthPlace,
               'mt-2'
@@ -77,9 +74,7 @@ export default function component(index = 0) {
                 {
                   label: 'name',
                   value: 'relation'
-                },
-
-                { label: 'required', value: 'required' }
+                }
               ],
               state.family[index].regAdress,
               'mt-2'
@@ -99,11 +94,18 @@ export default function component(index = 0) {
                   label: 'mask',
                   value: '+7 (000) 000 00-00'
                 },
-                { label: 'type', value: 'tes' },
-                { label: 'required', value: 'required' }
+                { label: 'type', value: 'tel' }
               ],
               state.family[index].phone,
-              'mt-2'
+              'mt-2',
+              false,
+              [
+                (val) => {
+                  if (!val) return true
+
+                  return val.length === 18 || 'Укажите полный номер телефона'
+                }
+              ]
             ),
             getInputTemplate(
               'Место работы',
@@ -111,9 +113,7 @@ export default function component(index = 0) {
                 {
                   label: 'name',
                   value: 'relation'
-                },
-
-                { label: 'required', value: 'required' }
+                }
               ],
               state.family[index].workPlace,
               'mt-2'
@@ -124,9 +124,7 @@ export default function component(index = 0) {
                 {
                   label: 'name',
                   value: 'relation'
-                },
-
-                { label: 'required', value: 'required' }
+                }
               ],
               state.family[index].position,
               'mt-2'
@@ -146,11 +144,18 @@ export default function component(index = 0) {
                   label: 'mask',
                   value: '+7 (000) 000 00-00'
                 },
-                { label: 'type', value: 'tes' },
-                { label: 'required', value: 'required' }
+                { label: 'type', value: 'tel' }
               ],
               state.family[index].workPhone,
-              'mt-2'
+              'mt-2',
+              false,
+              [
+                (val) => {
+                  if (!val) return true
+
+                  return val.length === 18 || 'Укажите полный номер телефона'
+                }
+              ]
             )
           ]
         }

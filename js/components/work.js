@@ -23,7 +23,8 @@ export default function component(index = 0) {
                 {
                   label: 'name',
                   value: 'org_nname'
-                }
+                },
+                { label: 'required', value: index === 0 ? 'required' : '' }
               ],
               state.work[index].name,
               'mt-2'

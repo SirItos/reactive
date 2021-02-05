@@ -52,7 +52,7 @@ export const changeSlide = (event, direction = 'slickNext') => {
   if (!data.slider) return
 
   if (data.currentSlide === headers.length - 1 && direction === 'slickNext') {
-    sendRequest()
+    if (validateCheckbox(true)) sendRequest()
     return
   }
   data.slider.slick(direction)

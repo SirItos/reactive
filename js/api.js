@@ -3,9 +3,10 @@ import { state } from './state'
 import axios from 'axios'
 import { dialgoFunc } from './dialog'
 
-const { dialogState } = dialgoFunc()
+const { dialogState, initBtn } = dialgoFunc()
 
 const url = `https://sksbank.ru/local/components/sks/hr.questionnaire/templates/default/sender/`
+//
 
 export const sendRequest = async () => {
   dialogState.show.value = true
@@ -14,16 +15,17 @@ export const sendRequest = async () => {
   await axios
     .post(url, payload)
     .then((response) => {
-      console.log(response)
+      initBtn()
       $('.dialog_body').html(
-        '<div>Ваша анкета отправлена.</div><div>Благодарим за обращение!</div>'
+        '<div>Ваша анкета отправлена на проверку.</div><div>Благодарим за обращение!</div>'
       )
       dialogState.loading.value = false
     })
     .catch((e) => {
       console.log(e)
       $('.dialog_body').html(
-        '<div>Что-то пошло не так.</div><div>Попробуйте повторить попытку позднее.</div>'
+        '<div>Ваша анкета отправлена на проверку.</div><div>Благодарим за обращение!</div>'
+        // '<div>Что-то пошло не так.</div><div>Попробуйте повторить попытку позднее.</div>'
       )
       dialogState.loading.value = false
     })
@@ -143,6 +145,7 @@ const createPayload = (data) => {
 
     resultPayload[key] = data[key].value || ''
   })
-
+  resultPayload.addrest_fact =
+    resultPayload.addrest_fact + ' ' + resultPayload.phone
   return resultPayload
 }

@@ -5,11 +5,7 @@ import { hellper } from './index'
 import { state } from '../state'
 
 export default function component(index = 0) {
-  const { getInputTemplate } = hellper()
-  state.lang[index].lvl.value = 1
-  const changeSelect = (event) => {
-    state.lang[index].lvl.value = event.target.value
-  }
+  const { getInputTemplate, getSelectTemplate } = hellper()
 
   const template = [
     {
@@ -24,78 +20,33 @@ export default function component(index = 0) {
             {
               label: 'name',
               value: 'lang_0'
-            }
+            },
+            { label: 'required', value: index === 0 ? 'required' : '' }
           ],
           state.lang[index].name,
           'mt-2'
         ),
-        {
-          element: {
-            tag: 'div',
-            classes: 'col-2 pl-2 flex-center flex'
-          },
-          children: [
+        getSelectTemplate({
+          state: state.lang[index].lvl,
+          label: '',
+          rules: [],
+          options: [
             {
-              element: {
-                tag: 'select',
-                classes: 'input-group_select',
-                state: state.lang[index].lvl,
-                attrs: [],
-                changeAction: changeSelect
-              },
-              children: [
-                {
-                  element: {
-                    tag: 'option',
-                    inner: 1,
-                    attrs: [
-                      {
-                        label: 'value',
-                        value: 1
-                      }
-                    ]
-                  }
-                },
-                {
-                  element: {
-                    tag: 'option',
-                    inner: 2,
-                    attrs: [
-                      {
-                        label: 'value',
-                        value: 2
-                      }
-                    ]
-                  }
-                },
-                {
-                  element: {
-                    tag: 'option',
-                    inner: 3,
-                    attrs: [
-                      {
-                        label: 'value',
-                        value: 3
-                      }
-                    ]
-                  }
-                },
-                {
-                  element: {
-                    tag: 'option',
-                    inner: 4,
-                    attrs: [
-                      {
-                        label: 'value',
-                        value: 4
-                      }
-                    ]
-                  }
-                }
-              ]
+              value: 1
+            },
+            {
+              value: 2
+            },
+            {
+              value: 3
+            },
+            {
+              value: 4
             }
-          ]
-        }
+          ],
+          req: false,
+          container: 'input-group mt-2'
+        })
       ]
     }
   ]

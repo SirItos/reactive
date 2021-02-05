@@ -30,7 +30,11 @@ export const render = (obj, parent, step = 'personal') => {
   }
 
   if (elementInfo.state) {
-    if (elementInfo.tag === 'input' || elementInfo.tag === 'textarea') {
+    if (
+      elementInfo.tag === 'input' ||
+      elementInfo.tag === 'textarea' ||
+      elementInfo.tag === 'select'
+    ) {
       runner(() => {
         elementInfo.state.value
           ? $(newNode).addClass('input-group_input__not_empty')
@@ -38,10 +42,13 @@ export const render = (obj, parent, step = 'personal') => {
       })
     }
     let required = false
+
+    newNode.addEventListener('change', (event) => {
+      elementInfo.state.value =
+        event.target.value === 'null' ? null : event.target.value
+    })
     if (elementInfo.changeAction) {
-      newNode.addEventListener('change', (event) => {
-        runner(elementInfo.changeAction, event)
-      })
+      runner(elementInfo.changeAction)
     }
     if (
       elementInfo.attrs.find((item) => {
@@ -93,10 +100,18 @@ const validate = (state, target, rules, mode = false) => {
     if ($(target).css('display') === 'none') {
       break
     }
-    if (!result) {
+
+    if (!result || typeof result === 'string') {
       $(target)
         .find('.input-group_validation-block')
         .addClass('input-group_validation-block__active')
+      if (typeof result === 'string') {
+        $(target).find('.input-group_validation-block__text').html(result)
+      } else {
+        $(target)
+          .find('.input-group_validation-block__text')
+          .html('Необходимо заполнить поле')
+      }
       if (mode) {
         $('html, body').animate(
           { scrollTop: $(target).offset().top - 50 },

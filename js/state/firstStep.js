@@ -40,5 +40,8 @@ export const firstStep = {
   },
   adresEq: {
     value: null
+  },
+  phone: {
+    value: null
   }
 }

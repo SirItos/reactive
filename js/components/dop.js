@@ -10,6 +10,10 @@ export default function component() {
         {
           label: 'name',
           value: 'who_recomend'
+        },
+        {
+          label: 'required',
+          value: 'required'
         }
       ],
       state.recomend,
@@ -21,6 +25,10 @@ export default function component() {
         {
           label: 'name',
           value: 'add'
+        },
+        {
+          label: 'required',
+          value: 'required'
         }
       ],
       state.credit,
@@ -34,6 +42,14 @@ export default function component() {
         {
           label: 'name',
           value: 'when'
+        },
+        {
+          label: 'type',
+          value: 'date'
+        },
+        {
+          label: 'required',
+          value: 'required'
         }
       ],
       state.timeToStart,

@@ -20,6 +20,7 @@ const addBtnArray = [
 ]
 $(document).ready(() => {
   initSlider('#slider')
+
   Object.keys(comps).forEach((key) => {
     const root = document.querySelector(`#questionnaire .${key}-container`)
 

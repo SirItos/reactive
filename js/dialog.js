@@ -28,6 +28,15 @@ export const dialgoFunc = () => {
       dialogState.loading.value = false
     }
   })
+  const initBtn = () => {
+    $('#closeModal').click(() => {
+      const text = $('.dialog_body').text()
+      if (text.includes('Ваша анкета отправлена')) {
+        location.reload()
+        return
+      }
+    })
+  }
 
   const showDialog = () => {
     dialogState.show.value
@@ -49,6 +58,7 @@ export const dialgoFunc = () => {
   runner(loading)
 
   return {
-    dialogState
+    dialogState,
+    initBtn
   }
 }

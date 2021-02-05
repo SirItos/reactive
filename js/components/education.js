@@ -23,7 +23,8 @@ export default function educationComp(index = 0) {
                 {
                   label: 'name',
                   value: 'sch_name'
-                }
+                },
+                { label: 'required', value: index === 0 ? 'required' : '' }
               ],
               state.education[index].name,
               'mt-2'
@@ -66,7 +67,7 @@ export default function educationComp(index = 0) {
               [
                 {
                   label: 'name',
-                  value: 'sch_name'
+                  value: 'sch_Dip'
                 },
                 {
                   label: 'type',

@@ -4,14 +4,15 @@ import { resizeSlick } from '../slider'
 import { state } from '../state'
 
 export default function component() {
-  const { getInputTemplate } = hellper()
-
-  const changeStatus = (event) => {
-    const allInputs = $('.army-container').find('input, select')
-
+  const { getInputTemplate, getSelectTemplate } = hellper()
+  state.armyStatus.value = null
+  const changeStatus = () => {
+    const test = state.armyStatus.value
+    const allInputs = $('.army-container').find('input, select,.predpis_label')
     allInputs.each(function (index) {
       if (index === 0) return
-      event.target.value !== 'военнообязанный(ая)'
+
+      test !== 'военнообязанный(ая)'
         ? $(this)
             .parent()
             .fadeOut('fast', () => {
@@ -26,65 +27,29 @@ export default function component() {
   }
 
   const template = [
-    {
-      element: {
-        tag: 'div',
-        classes: 'input-group col-12 col-sm-10 col-md-8  mt-2'
-      },
-      children: [
+    getSelectTemplate({
+      state: state.armyStatus,
+      label: 'Сведения о военной службе',
+      rules: [],
+
+      change: changeStatus,
+      options: [
         {
-          element: {
-            tag: 'select',
-            classes: 'input-group_select',
-            state: state.armyStatus,
-            changeAction: changeStatus,
-            attrs: []
-          },
-          children: [
-            {
-              element: {
-                tag: 'option',
-                inner: 'военнообязанный(ая)',
-                attrs: [
-                  {
-                    label: 'value',
-                    value: 'военнообязанный(ая)'
-                  }
-                ]
-              }
-            },
-            {
-              element: {
-                tag: 'option',
-                inner: 'невоеннообязанный(ая)',
-                attrs: [
-                  {
-                    label: 'value',
-                    value: 'невоеннообязанный(ая)'
-                  }
-                ]
-              }
-            },
-            {
-              element: {
-                tag: 'option',
-                inner: 'призывник',
-                attrs: [
-                  {
-                    label: 'value',
-                    value: 'призывник'
-                  }
-                ]
-              }
-            }
-          ]
+          value: 'военнообязанный(ая)'
+        },
+        {
+          value: 'невоеннообязанный(ая)'
+        },
+        {
+          value: 'призывник'
         }
       ]
-    },
+    }),
+
     {
       element: {
         tag: 'div',
-        classes: 'col-12 mt-2 army-details flex flex-center'
+        classes: 'col-12 mt-2 army-details flex flex-center '
       },
       children: [
         getInputTemplate(
@@ -93,8 +58,7 @@ export default function component() {
             {
               label: 'name',
               value: 'army_doc'
-            },
-            { label: 'required', value: 'required' }
+            }
           ],
           state.armyDocNumber,
           ''
@@ -105,8 +69,7 @@ export default function component() {
             {
               label: 'name',
               value: 'rank'
-            },
-            { label: 'required', value: 'required' }
+            }
           ],
           state.rank,
           ''
@@ -117,8 +80,7 @@ export default function component() {
             {
               label: 'name',
               value: 'army_vys'
-            },
-            { label: 'required', value: 'required' }
+            }
           ],
           state.vus,
           ''
@@ -129,8 +91,7 @@ export default function component() {
             {
               label: 'name',
               value: 'sostav'
-            },
-            { label: 'required', value: 'required' }
+            }
           ],
           state.parts,
           ''
@@ -141,16 +102,16 @@ export default function component() {
             {
               label: 'name',
               value: 'category'
-            },
-            { label: 'required', value: 'required' }
+            }
           ],
           state.cat,
           ''
         ),
+
         {
           element: {
             tag: 'div',
-            classes: 'col-12 col-sm-10 col-md-8 flex mt-4 mb-4'
+            classes: 'col-12 col-sm-10 col-md-8 flex mt-4 mb-4 predpis_label'
           },
           children: [
             {
@@ -160,43 +121,22 @@ export default function component() {
                 inner: 'Наличие мобилизационного предписания '
               }
             },
-            {
-              element: {
-                tag: 'select',
-                classes: 'input-group_select col-3',
-                attrs: [],
-                state: state.predpis,
-                changeAction: (event) => {
-                  state.predpis.value = event.target.value
-                }
-              },
-              children: [
+            getSelectTemplate({
+              state: state.predpis,
+              label: '',
+              rules: [],
+
+              change: changeStatus,
+              options: [
                 {
-                  element: {
-                    tag: 'option',
-                    inner: 'Да',
-                    attrs: [
-                      {
-                        label: 'value',
-                        value: 'yes'
-                      }
-                    ]
-                  }
+                  value: 'Да'
                 },
                 {
-                  element: {
-                    tag: 'option',
-                    inner: 'Нет',
-                    attrs: [
-                      {
-                        label: 'value',
-                        value: 'no'
-                      }
-                    ]
-                  }
+                  value: 'Нет'
                 }
-              ]
-            }
+              ],
+              container: 'input-group col-3'
+            })
           ]
         },
         getInputTemplate(
@@ -205,8 +145,7 @@ export default function component() {
             {
               label: 'name',
               value: 'army_type'
-            },
-            { label: 'required', value: 'required' }
+            }
           ],
           state.typeOfArmy,
           ''
@@ -217,8 +156,7 @@ export default function component() {
             {
               label: 'name',
               value: 'fitness '
-            },
-            { label: 'required', value: 'required' }
+            }
           ],
           state.health,
           ''
@@ -229,8 +167,7 @@ export default function component() {
             {
               label: 'name',
               value: 'uchet'
-            },
-            { label: 'required', value: 'required' }
+            }
           ],
           state.aramyRegistered,
           ''
