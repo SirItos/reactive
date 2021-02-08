@@ -16,9 +16,13 @@ export default function component() {
     ) {
       state.address_registrate.value = state.addrest_fact.value
       area.val(state.address_registrate.value)
+      area.parent().fadeOut('fast')
+      area.parent().next().fadeOut('fast')
     } else {
       state.address_registrate.value = null
       area.val('')
+      area.parent().fadeIn('fast')
+      area.parent().next().fadeIn('fast')
     }
   })
 

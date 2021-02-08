@@ -24,28 +24,31 @@ export default function component(index = 0) {
             { label: 'required', value: index === 0 ? 'required' : '' }
           ],
           state.lang[index].name,
-          'mt-2'
+          'mt-2 ',
+          false,
+          [],
+          'input-group col-12 col-sm-6 pr-4'
         ),
         getSelectTemplate({
           state: state.lang[index].lvl,
-          label: '',
+          label: 'Уровень владения',
           rules: [],
           options: [
             {
-              value: 1
+              value: '1 - плохое'
             },
             {
-              value: 2
+              value: '1 - читаю и перевожу со словарем'
             },
             {
-              value: 3
+              value: '1 - разговорный'
             },
             {
-              value: 4
+              value: '1 - в совершенстве'
             }
           ],
           req: false,
-          container: 'input-group mt-2'
+          container: 'input-group lag-11 col-6 col-sm-6 col-md-6  '
         })
       ]
     }

@@ -18,20 +18,20 @@ const stepNumToName = {
 }
 
 export const validateStep = (step) => {
-  // return true
-  let result = true
+  return true
+  // let result = true
 
-  const validateFunctions = validationGroups[stepNumToName[step]]
+  // const validateFunctions = validationGroups[stepNumToName[step]]
 
-  if (!validateFunctions) {
-    return result
-  }
-  for (let phase of validateFunctions) {
-    if (!phase.func(...phase.params, true)) {
-      result = false
-      break
-    }
-  }
+  // if (!validateFunctions) {
+  //   return result
+  // }
+  // for (let phase of validateFunctions) {
+  //   if (!phase.func(...phase.params, true)) {
+  //     result = false
+  //     break
+  //   }
+  // }
 
-  return result
+  // return result
 }

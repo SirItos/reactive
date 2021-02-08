@@ -16,12 +16,13 @@ export const hellper = () => {
     state = null,
     addClass = null,
     textarea = false,
-    rules = []
+    rules = [],
+    changeCls
   ) => {
     const inputTemplateCopy = {
       element: {
         tag: 'div',
-        classes: 'input-group col-12 col-sm-10 col-md-8'
+        classes: changeCls || 'input-group col-12 col-sm-10 col-md-8'
       },
       children: [
         {
