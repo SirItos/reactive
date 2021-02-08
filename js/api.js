@@ -143,9 +143,25 @@ const createPayload = (data) => {
       return
     }
 
-    resultPayload[key] = data[key].value || ''
+    const val = key.toLowerCase().includes('date')
+      ? formatDate(data[key].value)
+      : data[key].value
+    resultPayload[key] = val || ''
   })
   resultPayload.addrest_fact =
     resultPayload.addrest_fact + ' ' + resultPayload.phone
   return resultPayload
+}
+
+/**
+ * Форматирование даты
+ *
+ *
+ * @param {string} val
+ * @returns string
+ */
+const formatDate = (val) => {
+  if (!val) return val
+  const valArr = val.split('-')
+  return `${valArr[2]}.${valArr[1]}.${valArr[0]}`
 }

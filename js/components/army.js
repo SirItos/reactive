@@ -31,7 +31,7 @@ export default function component() {
       state: state.armyStatus,
       label: 'Сведения о военной службе',
       rules: [],
-
+      req: true,
       change: changeStatus,
       options: [
         {
