@@ -18,7 +18,8 @@ const stepNumToName = {
 }
 
 export const validateStep = (step) => {
-  // return true
+  if (process.env.MODE === 'development') return true
+
   let result = true
 
   const validateFunctions = validationGroups[stepNumToName[step]]

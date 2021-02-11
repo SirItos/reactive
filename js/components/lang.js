@@ -38,13 +38,13 @@ export default function component(index = 0) {
               value: '1 - плохое'
             },
             {
-              value: '1 - читаю и перевожу со словарем'
+              value: '2 - читаю и перевожу со словарем'
             },
             {
-              value: '1 - разговорный'
+              value: '3 - разговорный'
             },
             {
-              value: '1 - в совершенстве'
+              value: '4 - в совершенстве'
             }
           ],
           req: false,

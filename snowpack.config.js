@@ -26,7 +26,18 @@ module.exports = {
     '**/js/t.js',
     '**/php/**/*'
   ],
-  plugins: ['@snowpack/plugin-sass'],
+  plugins: [
+    '@snowpack/plugin-sass',
+    [
+      '@snowpack/plugin-babel',
+      {
+        input: ['.js'],
+        transformOptions: {
+          plugins: [['@babel/plugin-proposal-class-properties']]
+        }
+      }
+    ]
+  ],
   packageOptions: {
     /* ... */
   },

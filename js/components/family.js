@@ -36,7 +36,11 @@ export default function component(index = 0) {
               [
                 {
                   label: 'name',
-                  value: 'family_name'
+                  value: 'family_fio'
+                },
+                {
+                  label: 'required',
+                  value: 'required'
                 }
               ],
               state.family[index].fio,
@@ -52,6 +56,10 @@ export default function component(index = 0) {
                 {
                   label: 'type',
                   value: 'date'
+                },
+                {
+                  label: 'required',
+                  value: 'required'
                 }
               ],
               state.family[index].birthDate,
@@ -62,7 +70,11 @@ export default function component(index = 0) {
               [
                 {
                   label: 'name',
-                  value: 'relation'
+                  value: 'family_birthPlace'
+                },
+                {
+                  label: 'required',
+                  value: 'required'
                 }
               ],
               state.family[index].birthPlace,
@@ -73,7 +85,11 @@ export default function component(index = 0) {
               [
                 {
                   label: 'name',
-                  value: 'relation'
+                  value: 'family_regAdress'
+                },
+                {
+                  label: 'required',
+                  value: 'required'
                 }
               ],
               state.family[index].regAdress,
@@ -84,7 +100,11 @@ export default function component(index = 0) {
               [
                 {
                   label: 'name',
-                  value: 'relation'
+                  value: 'family_phone'
+                },
+                {
+                  label: 'required',
+                  value: 'required'
                 },
                 {
                   label: 'type',
@@ -112,7 +132,11 @@ export default function component(index = 0) {
               [
                 {
                   label: 'name',
-                  value: 'relation'
+                  value: 'family_workPlace'
+                },
+                {
+                  label: 'required',
+                  value: 'required'
                 }
               ],
               state.family[index].workPlace,
@@ -123,7 +147,11 @@ export default function component(index = 0) {
               [
                 {
                   label: 'name',
-                  value: 'relation'
+                  value: 'family_position'
+                },
+                {
+                  label: 'required',
+                  value: 'required'
                 }
               ],
               state.family[index].position,
@@ -134,7 +162,11 @@ export default function component(index = 0) {
               [
                 {
                   label: 'name',
-                  value: 'relation'
+                  value: 'family_workPhone'
+                },
+                {
+                  label: 'required',
+                  value: 'required'
                 },
                 {
                   label: 'type',
